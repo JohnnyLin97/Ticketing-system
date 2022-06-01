@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'Ticketing_System.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '34.81.178.223',
+        'PORT': '3306',
+        'NAME': 'ticket',
+        'USER': 'backend',
+        'PASSWORD': 'backend852'
     }
 }
 
