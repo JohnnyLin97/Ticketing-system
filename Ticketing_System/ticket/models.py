@@ -6,20 +6,20 @@ from django_mysql.models import ListCharField
 
 # Transaction record
 class Transaction(models.Model):
-    transactionId = models.CharField
+    transactionId = models.CharField(max_length=45).primary_key
     name = models.CharField(max_length=45)
     phone = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
     seat = ListCharField(
-        base_field = models.CharField(max_length=45),
-        size = 6,
-        _MAX_LENGTH=(6*45)
+        base_field = models.CharField(max_length=10),
+        size = 4,
+        max_length = (4*45)
     )
     
 
 # Seats of performance
 class Event1_seats(models.Model):
-    seatId = models.CharField(max_length=45).primary_key
+    seatId = models.CharField(max_length=10).primary_key
     area = models.CharField(max_length=1) 
     num = models.CharField(max_length=2)
     booked = models.BooleanField(default=False)

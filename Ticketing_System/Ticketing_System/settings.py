@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vcj0su(t6+tlom=0%%3ltnw-z$_^0&h6b9b#(*&^t7s*t9bvix
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ticket.loca.lt','127.0.0.1']
 
 
 # Application definition
