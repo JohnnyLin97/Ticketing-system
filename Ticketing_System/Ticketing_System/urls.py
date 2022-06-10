@@ -20,4 +20,6 @@ from ticket import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('retrieve', views.retrieve),   #Get seat table
+    path('get/transaction', views.get_transaction),  #Search content of transaction
+    
 ]

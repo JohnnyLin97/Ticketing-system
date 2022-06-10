@@ -1,4 +1,4 @@
-from .models import Event1_seats
+from .models import Event1_seats, Transaction
 import random
 from django.core import serializers
 
@@ -29,20 +29,31 @@ def retrieve_all_seats():
 
     all_seats = []
     for i in all_units_list:
-        all_seats.append(unit_to_dic(i))
+        all_seats.append(unit_to_dic_seats(i))
 
     return all_seats
 
-def unit_to_dic(unit):
+def get_transaction_db(transaction_id):
+    unit = Transaction.objects.filter(id = transaction_id)
+    unit_list = list(unit)
+    return unit_to_dic_transaction(unit_list[0])
+
+def unit_to_dic_seats(unit):
     dict = {}
     dict['id'] = unit.id
     dict['area'] = unit.area
     dict['num'] = unit.num
     dict['transactionId'] = unit.transactionId
+    dict['booked'] = unit.booked
 
-    if unit.booked:
-        dict['booked'] = True
-    else:
-        dict['booked'] = False
+    return dict
+
+def unit_to_dic_transaction(unit):
+    dict = {}
+    dict['id'] = unit.id
+    dict['email'] = unit.email
+    dict['name'] = unit.name
+    dict['phone'] = unit.phone
+    dict['seat'] = unit.seat
 
     return dict
