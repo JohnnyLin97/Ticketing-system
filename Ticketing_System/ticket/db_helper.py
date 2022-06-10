@@ -38,6 +38,22 @@ def get_transaction_db(transaction_id):
     unit_list = list(unit)
     return unit_to_dic_transaction(unit_list[0])
 
+def create_transaction_db(email, name, phone, seat):
+    id = random.randrange(100000000000,999999999999)
+    
+    unit = Transaction.objects.create(
+            id = id,
+            email = email,
+            name = name,
+            phone = phone,
+            seat = seat
+    )
+
+    unit.save()
+
+    return id
+    
+
 def unit_to_dic_seats(unit):
     dict = {}
     dict['id'] = unit.id
