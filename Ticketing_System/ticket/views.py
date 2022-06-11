@@ -2,7 +2,7 @@ import email
 from .models import Event1_seats
 from django.http import HttpResponse, HttpResponseNotFound
 import json
-from .db_helper import get_transaction_db, retrieve_all_seats, create_transaction_db
+from .db_helper import book_seat, get_transaction_db, retrieve_all_seats, create_transaction_db
 
 # Create your views here.
 def retrieve(request):
@@ -37,5 +37,7 @@ def create_transaction(request):
     id = create_transaction_db(email, name, phone, seat)
     dict = {}
     dict['id'] = id
+
+    book_seat(seat, id)
 
     return HttpResponse(json.dumps(dict), content_type="application/json")
