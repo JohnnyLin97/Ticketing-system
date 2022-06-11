@@ -33,6 +33,18 @@ def retrieve_all_seats():
 
     return all_seats
 
+def retrieve_all_transactions():
+    all_units = Transaction.objects.all()
+
+    #Convert querySet to list
+    all_units_list = list(all_units)
+
+    all_transactions = []
+    for i in all_units_list:
+        all_transactions.append(unit_to_dic_transaction(i))
+
+    return all_transactions
+
 def get_transaction_db(transaction_id):
     unit = Transaction.objects.filter(id = transaction_id)
     unit_list = list(unit)

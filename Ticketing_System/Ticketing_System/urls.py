@@ -19,7 +19,8 @@ from ticket import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('retrieve/seat', views.retrieve),   #Get seat table
+    path('retrieve/seat', views.retrieve_seats),   #Get seat table
     path('get/transaction', views.get_transaction),  #Search content of transaction
-    path('create/transaction', views.create_transaction)
+    path('create/transaction', views.create_transaction),  #Create new transaction
+    path('retrieve/transaction', views.retrieve_transaction) #Get transaction table
 ]
