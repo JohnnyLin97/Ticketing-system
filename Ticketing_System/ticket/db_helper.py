@@ -56,11 +56,18 @@ def create_transaction_db(email, name, phone, seat):
 def book_seat(seats, transaction_id):
     print(type(seats))
     for i in seats:
-        print(i)
         unit = Event1_seats.objects.get(id = i)
         unit.booked = True
         unit.transactionId = transaction_id
         unit.save()
+
+def check_seat_state(seats):
+    for i in seats:
+        unit = Event1_seats.objects.get(id = i)
+        if unit.booked == True:
+            return True
+    
+    return False
 
 def unit_to_dic_seats(unit):
     dict = {}

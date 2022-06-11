@@ -1,8 +1,8 @@
 import email
 from .models import Event1_seats
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseNotFound
 import json
-from .db_helper import book_seat, get_transaction_db, retrieve_all_seats, create_transaction_db
+from .db_helper import book_seat, check_seat_state, get_transaction_db, retrieve_all_seats, create_transaction_db
 
 # Create your views here.
 def retrieve(request):
@@ -33,6 +33,9 @@ def create_transaction(request):
     name = request_json["name"]
     phone = request_json["phone"]
     seat = request_json["seat"]
+
+    if check_seat_state(seat):
+        return HttpResponseNotFound(json.dumps("Seat is already reserved"), content_type="application/json")
 
     id = create_transaction_db(email, name, phone, seat)
     dict = {}
